@@ -5,7 +5,10 @@
         "use":"@vercel/node"
        }
     ],
-    "routes":[{"src":"/(.*)","dest":"src/index.js"}]
+    "routes":[{"src":"/(.*)",
+               "dest":"/",
+                "methods":["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
+             }]
     
 
 }

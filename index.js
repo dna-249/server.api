@@ -12,6 +12,7 @@ const corsConfig = {
     methods : ["GET","POST","PUT","DELETE"]
 }
 
+app.options("",cors(corsConfig))
 app.use(cors(corsConfig))
 app.use(express.json())
 mongoose.connect("mongodb+srv://danamonuraa:bkJ1MVARzko9ldt9@dnaapi.hjo9y.mongodb.net/product?retryWrites=true&w=majority&appName=dnaApi").then(()=> console.log("connected to database")).catch(err => console.log(err))

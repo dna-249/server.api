@@ -6,16 +6,16 @@ const app = express()
 const cors = require("cors");
 const mongoose = require("mongoose")
 
-
-mongoose.connect("mongodb+srv://danamonuraa:bkJ1MVARzko9ldt9@dnaapi.hjo9y.mongodb.net/product?retryWrites=true&w=majority&appName=dnaApi").then(()=> console.log("connected to database")).catch(err => console.log(err))
 const corsConfig = {
-    origins : ["*"],
-    credentials : true,
+    origin : ["*"],
+    credential : true,
     methods : ["GET","POST","PUT","DELETE"]
 }
 
 app.use(cors(corsConfig))
 app.use(express.json())
+mongoose.connect("mongodb+srv://danamonuraa:bkJ1MVARzko9ldt9@dnaapi.hjo9y.mongodb.net/product?retryWrites=true&w=majority&appName=dnaApi").then(()=> console.log("connected to database")).catch(err => console.log(err))
+
 
 const Products = require("./models/product.model");
 

@@ -1,6 +1,5 @@
 
 const express  = require("express");
-const multer   = require("multer");
 const Port = process.env.PORT || 3000
 const app = express()
 const cors = require("cors");
@@ -21,12 +20,9 @@ mongoose.connect("mongodb+srv://danamonuraa:bkJ1MVARzko9ldt9@dnaapi.hjo9y.mongod
 const Products = require("./models/product.model");
 
 
-const storage = multer.diskStorage({ destination : "uploads/image",
-                        filename:(req, file, cb)=> {
-        cb(null, `${req.file.originalname}`)
-      }})
-app.use("/file", express.static("uploads/image"))
-const upload = multer({storage:storage})
+
+
+
 app.get("/",(req,res)=>{
     res.send("hello from backend")
 })
@@ -42,7 +38,7 @@ app.get('/api/users', async (req,res) =>{
 })
 
 
-app.post('/api/users',upload.single('file'),(req,res) => {
+app.post('/api/users',(req,res) => {
     Products.create({name:req.body.name, 
                      email:req.body.email,
                     })

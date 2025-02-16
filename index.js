@@ -16,7 +16,7 @@ app.use(cors(corsConfig))
 app.use(express.json())
 mongoose.connect("mongodb+srv://danamonuraa:bkJ1MVARzko9ldt9@dnaapi.hjo9y.mongodb.net/product?retryWrites=true&w=majority&appName=dnaApi").then(()=> console.log("connected to database")).catch(err => console.log(err))
 
-const Products = require("./models/product.model");
+const Data = require("./models/product.model");
 
 
 app.get("/",(req,res)=>{
@@ -25,7 +25,7 @@ app.get("/",(req,res)=>{
 
 app.get('/api/users', async (req,res) =>{
     try{
-        const product = await Products.find({})
+        const product = await Data.find({})
         res.json(product)
     }catch(error){
         res.status(500).json({message:error.message})
@@ -35,7 +35,7 @@ app.get('/api/users', async (req,res) =>{
 
 
 app.post('/api/users',(req,res) => {
-    Products.create({image:req.body.image, 
+    Data.create({image:req.body.image, 
                      name:req.body.name,
                      description:req.body.description,
                      price:req.body.price,
@@ -51,7 +51,7 @@ app.post('/api/users',(req,res) => {
 app.get("api/user/:id", async(req,res)=>{
     try{
     const {id} = req.params;
-    const product = await Products.findById(id)
+    const product = await Data.findById(id)
     res.status(200).json(product)
     }catch(err){
         res.status(500).json({message: err.message})
@@ -62,7 +62,7 @@ app.get("api/user/:id", async(req,res)=>{
 app.put("api/users/:id", async(req,res)=>{
     try {
         const {id}=req.params
-        const product = await Products.findByIdAndUpdate(id, req.body)
+        const product = await Data.findByIdAndUpdate(id, req.body)
         res.status(200).json(product)
     } catch (error) {
        res.status(500).json({message:error.message}) 

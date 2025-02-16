@@ -16,11 +16,7 @@ app.use(cors(corsConfig))
 app.use(express.json())
 mongoose.connect("mongodb+srv://danamonuraa:bkJ1MVARzko9ldt9@dnaapi.hjo9y.mongodb.net/product?retryWrites=true&w=majority&appName=dnaApi").then(()=> console.log("connected to database")).catch(err => console.log(err))
 
-
 const Products = require("./models/product.model");
-
-
-
 
 
 app.get("/",(req,res)=>{
@@ -39,8 +35,13 @@ app.get('/api/users', async (req,res) =>{
 
 
 app.post('/api/users',(req,res) => {
-    Products.create({name:req.body.name, 
-                     email:req.body.email,
+    Products.create({image:req.body.image, 
+                     name:req.body.name,
+                     description:req.body.description,
+                     price:req.body.price,
+                     category:req.body.category,
+                     contact:req.body.contact,
+                     whatsapp:req.body.whatsapp,
                     })
                     
 })

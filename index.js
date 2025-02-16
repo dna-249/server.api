@@ -6,7 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose")
 
 const corsConfig = {
-    origin : ["https://fastapi-iota-lac.vercel.app/"],
+    origin : ["https://fastapi-iota-lac.vercel.app"],
     credential : true,
     methods : ["GET","POST","PUT","DELETE"]
 }

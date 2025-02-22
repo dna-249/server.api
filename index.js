@@ -6,7 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose")
 
 const corsConfig = {
-    origin : ["https://myshop-dna.vercel.app"],
+    origin : ["*"],
     credential : true,
     methods : ["GET","POST","PUT","DELETE"]
 }

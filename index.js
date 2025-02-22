@@ -48,10 +48,10 @@ app.post('/api/users',(req,res) => {
 
 
 
-app.get("api/user/:_id", async(req,res)=>{
+app.get("api/user/:id", async(req,res)=>{
     try{
-    const {_id} = req.params;
-    const product = await Data.findById(_id)
+    const {id} = req.params;
+    const product = await Data.findById(id)
     res.status(200).json(product)
     }catch(err){
         res.status(500).json({message: err.message})
@@ -59,10 +59,10 @@ app.get("api/user/:_id", async(req,res)=>{
 })
 
 
-app.put("api/users/:_id", async(req,res)=>{
+app.put("api/users/:id", async(req,res)=>{
     try {
-        const {_id}=req.params
-        const product = await Data.findByIdAndUpdate(_id, req.body)
+        const {id}=req.params
+        const product = await Data.findByIdAndUpdate(id, req.body)
         
         if(!product){
             res.status(404).json("product not found")
@@ -74,10 +74,10 @@ app.put("api/users/:_id", async(req,res)=>{
     }
 })
 
-app.delete("api/users/:_id", async(req,res)=>{
+app.delete("api/users/:id", async(req,res)=>{
     try {
-        const {_id}=req.params
-        const product = await Data.findByIdAndDelete(_id, req.body)
+        const {id}=req.params
+        const product = await Data.findByIdAndDelete(id, req.body)
 
         if(!product){
             res.status(404).json("product not found")

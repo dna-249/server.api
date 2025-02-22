@@ -15,7 +15,7 @@ app.options("",cors(corsConfig))
 app.use(cors(corsConfig))
 app.use(express.json())
 app.use(express.urlencoded({
-    extended:false
+    extended:true
 }))
 mongoose.connect("mongodb+srv://danamonuraa:bkJ1MVARzko9ldt9@dnaapi.hjo9y.mongodb.net/product?retryWrites=true&w=majority&appName=dnaApi").then(()=> console.log("connected to database")).catch(err => console.log(err))
 
@@ -51,7 +51,7 @@ app.post('/api/users',(req,res) => {
 
 
 
-app.get("api/user/:id", async(req,res)=>{
+app.get("/api/users/:id", async(req,res)=>{
     try{
     const {id} = req.params;
     const product = await Data.findById(id)
@@ -62,7 +62,7 @@ app.get("api/user/:id", async(req,res)=>{
 })
 
 
-app.put("api/users/:id", async(req,res)=>{
+app.put("/api/users/:id", async(req,res)=>{
     try {
         const {id}=req.params
         const product = await Data.findByIdAndUpdate(id, req.body)
@@ -77,7 +77,7 @@ app.put("api/users/:id", async(req,res)=>{
     }
 })
 
-app.delete("api/users/:id", async(req,res)=>{
+app.delete("/api/users/:id", async(req,res)=>{
     try {
         const {id}=req.params
         const product = await Data.findByIdAndDelete(id, req.body)

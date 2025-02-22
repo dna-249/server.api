@@ -63,11 +63,32 @@ app.put("api/users/:id", async(req,res)=>{
     try {
         const {id}=req.params
         const product = await Data.findByIdAndUpdate(id, req.body)
+        
+        if(!product){
+            res.status(404).json("product not found")
+        }
+
         res.status(200).json(product)
     } catch (error) {
        res.status(500).json({message:error.message}) 
     }
 })
+
+app.delete("api/users/:id", async(req,res)=>{
+    try {
+        const {id}=req.params
+        const product = await Data.findByIdAndDelete(id, req.body)
+
+        if(!product){
+            res.status(404).json("product not found")
+        }
+        res.status(200).json(product)
+    } catch (error) {
+       res.status(500).json({message:error.message}) 
+    }
+})
+
+
 app.listen(Port, ()=>{
     console.log("server is Running")
     

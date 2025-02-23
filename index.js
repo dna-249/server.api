@@ -46,6 +46,7 @@ app.post('/api/users',(req,res) => {
                      contact:req.body.contact,
                      whatsapp:req.body.whatsapp,
                     })
+                    res.send("successfully uploaded")
                     
 })
 

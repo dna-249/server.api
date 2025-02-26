@@ -41,7 +41,7 @@ app.post('/api/users',(req,res) => {
     Data.create({image:req.body.image, 
                      name:req.body.name,
                      description:req.body.description,
-                     price:req.body.price,
+                     price:[{price:req.body.price}],
                      category:req.body.category,
                      contact:req.body.contact,
                      whatsapp:req.body.whatsapp,

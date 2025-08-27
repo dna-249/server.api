@@ -2,22 +2,19 @@ const https = require("https")
 
 
 const gifting =async(q,r)=>{
-console.log(process.env.customer_key)
-  const params = JSON.stringify({
-  'client_id':`${process.env.customer_key}`,
- ' client_secret':`${process.env.customer_secret}`
 
-  
-})
+  const params = `client_id=${process.env.customer_key}&client_secret=${process.env.customer_secret}`
+
+
 
 
 const options = {
-  hostname: 'https://api.mtn.com',
+  hostname: 'api.mtn.com',
   port: 443,
-  path: 'v1/oauth/access_token?grant_typ=credentials',
+  path: '/v1/oauth/access_token?grant_type=client_credentials',
   method: 'POST',
   headers:{
-    'Content-Type':'application/json'
+    'Content-Type':'application/x-www-form-urlencoded'
   }}
 
 const req = https.request(options, res => {

@@ -2,7 +2,7 @@ const https = require("https")
 
 
 const gifting =async(req,res)=>{
- const {email,amount} = q?.body
+/* const {email,amount} = q?.body
   const params = JSON.stringify({
   "email": email,
   "amount": amount *100,
@@ -36,10 +36,11 @@ const req = https.request(options, res => {
 })
 
 req.write(params)
-req.end()
+req.end() */
+res.send(200)
 }
 
-const verify = async(q,r)=>{
+/*const verify = async(q,r)=>{
 const {email,ref,adm} = q.body
 const options = {
   hostname: 'api.paystack.co',
@@ -74,11 +75,11 @@ const responses =(res)=>{
 
 req.end()
 
-}
+} */
 
 
  const share =async(req,res)=>{
-console.log("share")
+res.send(200)
 }
 
 

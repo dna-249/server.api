@@ -3,10 +3,11 @@ const express  = require("express");
 const Port = process.env.PORT || 3000
 const app = express()
 const cors = require("cors");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { mtn } = require("./router/router");
 
 const corsConfig = {
-    origin : ["https://myshop-dna.vercel.app"],
+    origin : ["*"],
     credential : true,
     methods : ["GET","POST","PUT","DELETE"]
 }
@@ -19,7 +20,7 @@ app.use(express.urlencoded({
 }))
 mongoose.connect(process.env.KEY).then(()=> console.log("connected to database")).catch(err => console.log(err))
 
-
+app.use("mtn",mtn)
 
 app.get("/",(req,res)=>{
     res.send("hello from backend")

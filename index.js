@@ -20,7 +20,7 @@ app.use(express.urlencoded({
 }))
 mongoose.connect(process.env.KEY).then(()=> console.log("connected to database")).catch(err => console.log(err))
 
-app.use("mtn",mtn)
+app.use("/mtn",mtn)
 
 app.get("/",(req,res)=>{
     res.send("hello from backend")

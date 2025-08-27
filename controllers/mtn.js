@@ -1,24 +1,24 @@
 const https = require("https")
 
 
-const gifting =async(req,res)=>{
-/* const {email,amount} = q?.body
+const gifting =async(q,r)=>{
+console.log(process.env.customer_key)
   const params = JSON.stringify({
-  "email": email,
-  "amount": amount *100,
+  'client_id':`${process.env.customer_key}`,
+ ' client_secret':`${process.env.customer_secret}`
+
   
 })
 
+
 const options = {
-  hostname: 'api.paystack.co',
+  hostname: 'https://api.mtn.com',
   port: 443,
-  path: '/transaction/initialize',
+  path: 'v1/oauth/access_token?grant_typ=credentials',
   method: 'POST',
-  headers: {
-    Authorization: `Bearer ${process.env.SECRET_KEYS}`,
-    'Content-Type': 'application/json'
-  }
-}
+  headers:{
+    'Content-Type':'application/json'
+  }}
 
 const req = https.request(options, res => {
   let data = ''
@@ -36,8 +36,7 @@ const req = https.request(options, res => {
 })
 
 req.write(params)
-req.end() */
-res.send(200)
+req.end() 
 }
 
 /*const verify = async(q,r)=>{
@@ -79,7 +78,7 @@ req.end()
 
 
  const share =async(req,res)=>{
-res.send(200)
+res.sendStatus(200)
 }
 
 

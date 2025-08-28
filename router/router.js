@@ -1,8 +1,12 @@
 const express = require("express")
-const mtn = express.Router('')
-const {share,gifting} = require("../controllers/mtn")
+const mtnRouter = express.Router('')
+const userRouter = express.Router('')
+const {share,gifting,getOneUser,createUser,getUsers} = require("../controllers/mtn")
 
-mtn.get("/gifting",gifting)
-mtn.get("/share",share)
+mtnRouter.get("/gifting",gifting)
+mtnRouter.get("/share",share)
+userRouter.post("/",createUser)
+userRouter.get("/one",getOneUser)
+userRouter.get("/all",getUsers)
 
-module.exports ={mtn}
+module.exports ={mtnRouter,userRouter}

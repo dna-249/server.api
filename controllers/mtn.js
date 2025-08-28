@@ -78,5 +78,46 @@ req.end()
 res.sendStatus(200)
 }
 
+const createUser =async(req,res)=>{
+    const {name,email,phone,address,user,password} =req.body;
 
-module.exports = {share,gifting}
+    try {
+    const create = await Products.create({
+                   
+                    name:name,
+                    email:email,
+                    phone:phone,
+                    address:address,
+                    user:user,
+                    pass:password, 
+                     }) 
+        res.send("created")
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+const getUsers =async(req,res)=>{
+    try {
+          const users = await Products.find({})
+          console.log("created")
+          res.json(users)
+    } catch (error) {
+          res.json(error.message)
+    }
+  
+}
+
+const getOneUser = async(req,res)=>{
+    const {id} = req.params
+    try {
+          const users = await Products.findById({_id:id})
+          res.json(users)
+    } catch (error) {
+          res.json(error.message)
+    }
+  
+}
+
+
+module.exports = {share,gifting,getOneUser,getUsers,createUser}

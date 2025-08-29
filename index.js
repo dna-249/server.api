@@ -4,7 +4,7 @@ const Port = process.env.PORT || 3000
 const app = express()
 const cors = require("cors");
 const mongoose = require("mongoose");
-const { mtn } = require("./router/router");
+const { mtnRouter,userRouter } = require("./router/router");
 
 const corsConfig = {
     origin : ["*"],
@@ -20,7 +20,8 @@ app.use(express.urlencoded({
 }))
 mongoose.connect(process.env.KEY).then(()=> console.log("connected to database")).catch(err => console.log("not connected"))
 
-app.use("/mtn",mtn)
+app.use("/mtn",mtnRouter)
+app.use("/user",userRouter)
 
 app.get("/",(req,res)=>{
     res.send("hello from backend")

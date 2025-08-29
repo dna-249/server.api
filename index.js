@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const { mtnRouter,userRouter } = require("./router/router");
 
 const corsConfig = {
-    origin : ["*"],
+    origin : ["https://rumaisdata.vercel.app"],
     credential : true,
     methods : ["GET","POST","PUT","DELETE"]
 }

@@ -1,5 +1,45 @@
 const https = require("https")
+const querystring = require('querystring');
 
+
+const gifting =async(q,r)=>{
+const data = querystring.stringify({
+  client_id: process.env.customer_key,
+  client_secret: process.env.customer_secret,
+  grant_type: 'client_credentials'
+});
+
+const options = {
+  hostname: 'api.mtn.com',
+  path: '/v1/oauth/access_token',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Length': Buffer.byteLength(data)
+  }
+};
+
+const req = https.request(options, res => {
+  let body = '';
+  res.on('data', chunk => body += chunk);
+  res.on('end', () => {
+    try {
+      const parsed = JSON.parse(body);
+      console.log('Access Token:', parsed);
+    } catch (err) {
+      console.error('Failed to parse response:', err);
+    }
+  });
+});
+
+req.on('error', error => {
+  console.error('Request error:', error);
+});
+
+req.write(data);
+req.end();
+
+/*
 
 const gifting =async(q,r)=>{
 
@@ -73,7 +113,7 @@ req.end()
 
 } */
 
-
+}
  const share =async(req,res)=>{
 res.sendStatus(200)
 }

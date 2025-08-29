@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended:true
 }))
-mongoose.connect(process.env.KEY).then(()=> console.log("connected to database")).catch(err => console.log(err))
+mongoose.connect(process.env.KEY).then(()=> console.log("connected to database")).catch(err => console.log("not connected"))
 
 app.use("/mtn",mtn)
 

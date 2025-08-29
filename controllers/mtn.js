@@ -1,6 +1,6 @@
 const https = require("https")
 const querystring = require('querystring');
-
+const {Products} = require("../models/user")
 
 const gifting =async(q,r)=>{
 const data = querystring.stringify({
@@ -119,19 +119,20 @@ res.sendStatus(200)
 }
 
 const createUser =async(req,res)=>{
-    const {name,email,phone,address,user,password} =req.body;
+    const {name,email,phone,address,user,password,pin} =req.body;
 
     try {
-    const create = await Products.create({
+     await Products.create({
                    
                     name:name,
                     email:email,
                     phone:phone,
                     address:address,
+                    pin:pin,
                     user:user,
                     pass:password, 
                      }) 
-        res.send("created")
+        res.send("created successfully")
     } catch (error) {
         res.json(error)
     }
@@ -140,7 +141,6 @@ const createUser =async(req,res)=>{
 const getUsers =async(req,res)=>{
     try {
           const users = await Products.find({})
-          console.log("created")
           res.json(users)
     } catch (error) {
           res.json(error.message)

@@ -23,16 +23,16 @@ const{ Products }= require("../models/user");
 
 
 const userVerify = async (req,res,next)=>{
-    const {header,name,password} = req.body
+    const {header,user,password} = req.body
 
     try {
        const token = await header;
-       const teacher = await Products.findOne({user:name,pass:password})
+       const teacher = await Products.findOne({user:user,pass:password})
        if(!token){
         console.log("access denied")
        } 
        const verified = jwt.verify(token, process.env.secret)
-       req.name = verified;
+       req.user = verified;
        req.password = verified;
        res.send(res.json(teacher))
        next()

@@ -13,7 +13,7 @@ const{ Products }= require("../models/user");
     }
     const token = jwt.sign({user:teacher.user,pass:teacher.pass},process.env.secret)
     console.log(token)
-    res.send(res.json(teacher))
+    res.send(token)
     
     next()
   } catch (error) {

@@ -9,7 +9,7 @@ mtnRouter.get("/share",share)
 userRouter.post("/",createUser)
 userRouter.post("/login",userLogin)
 userRouter.post("/verify",userVerify)
-userRouter.get("/one",getOneUser)
+userRouter.get("/one/:id",getOneUser)
 userRouter.get("/all",getUsers)
 
 module.exports ={mtnRouter,userRouter}

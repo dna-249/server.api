@@ -151,7 +151,7 @@ const getUsers =async(req,res)=>{
 const getOneUser = async(req,res)=>{
     const {id} = req.params
     try {
-          const users = await Products.findById({_id:id})
+        const users = await Products.findById({_id:id})
           res.json(users)
     } catch (error) {
           res.json(error.message)

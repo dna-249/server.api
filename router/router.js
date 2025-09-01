@@ -4,7 +4,7 @@ const userRouter = express.Router('')
 const {share,gifting,getOneUser,createUser,getUsers} = require("../controllers/mtn")
 const { userLogin, userVerify } = require("../middlewave/login")
 
-mtnRouter.get("/gifting",gifting)
+mtnRouter.get("/smedata",gifting)
 mtnRouter.get("/share",share)
 userRouter.post("/",createUser)
 userRouter.post("/login",userLogin)

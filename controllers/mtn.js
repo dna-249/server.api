@@ -1,117 +1,41 @@
 const https = require("https")
-const querystring = require('querystring');
-const {Products} = require("../models/user")
+const {Products} = require("../models/user");
+const { default: axios } = require("axios");
 
 const gifting =async(q,r)=>{
-const data = querystring.stringify({
-  client_id: process.env.customer_key,
-  client_secret: process.env.customer_secret,
-  grant_type: 'client_credentials'
-});
+const data = JSON.stringify({
+    size:"1GB",
+    network:"airtel",
+    phone:"08085943776",
+  });
 
-const options = {
-  hostname: 'api.mtn.com',
-  path: '/v1/oauth/access_token',
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Length': Buffer.byteLength(data)
+
+  axios.get('https://smedata.ng/wp-json/api/v1/data', {
+  params: {
+    size:"500MB",
+    network:"mtn",
+    phone:"07074297959",
+    token:"b1b2fce9371a0be8a1c65a6bc"
   }
-};
-
-const req = https.request(options, res => {
-  let body = '';
-  res.on('data', chunk => body += chunk);
-  res.on('end', () => {
-    try {
-      const parsed = JSON.parse(body);
-      console.log('Access Token:', parsed);
-    } catch (err) {
-      console.error('Failed to parse response:', err);
-    }
-  });
+})
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.error(error);
 });
 
-req.on('error', error => {
-  console.error('Request error:', error);
-});
-
-req.write(data);
-req.end();
-
-/*
-
-const gifting =async(q,r)=>{
-
-  const params = `client_id=${process.env.customer_key}&client_secret=${process.env.customer_secret}`
 
 
 
 
-const options = {
-  hostname: 'api.mtn.com',
-  port: 443,
-  path: '/v1/oauth/access_token?grant_type=client_credentials',
-  method: 'POST',
-  headers:{
-    'Content-Type':'application/x-www-form-urlencoded'
-  }}
 
-const req = https.request(options, res => {
-  let data = ''
- 
-  res.on('data', (chunk) => {
-    data += chunk
-  });
 
-  res.on('end', () => {
-   const response = JSON.parse(data)
-    r.json(response)
-  })
-}).on('error', error => {
-  console.error(error)
-})
 
-req.write(params)
-req.end() 
-}
 
-/*const verify = async(q,r)=>{
-const {email,ref,adm} = q.body
-const options = {
-  hostname: 'api.paystack.co',
-  port: 443,
-  path: `/transaction/timeline/${ref}`,
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${process.env.SECRET_KEYS}`,
-    'Content-Type': 'application/json'
-  }
-}
 
-const req = https.get(options, res => {
-    let data = ''
- 
-  res.on('data', (chunk) => {
-    data += chunk
-  });
 
-  res.on('end', async() => {
-    const response = JSON.parse(data)
-    console.log(response)
-    responses(response?.data?.success)
-  
-  })
-}).on('error', error => {
-  console.error(error)
-})
-const responses =(res)=>{
-  r.send(res)
-}
 
-req.end()
-
-} */
 
 }
  const share =async(req,res)=>{

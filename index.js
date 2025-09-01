@@ -5,6 +5,7 @@ const app = express()
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { mtnRouter,userRouter } = require("./router/router");
+const { gifting } = require("./controllers/mtn");
 
 const corsConfig = {
     origin : ["https://rumaisdata.vercel.app"],
@@ -23,9 +24,7 @@ mongoose.connect(process.env.KEY).then(()=> console.log("connected to database")
 app.use("/mtn",mtnRouter)
 app.use("/user",userRouter)
 
-app.get("/",(req,res)=>{
-    res.send("hello from backend")
-})
+app.get("/",gifting)
 
 
 

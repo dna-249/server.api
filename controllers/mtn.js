@@ -3,15 +3,8 @@ const {Products} = require("../models/user");
 const { default: axios } = require("axios");
 
 const gifting =async(q,r)=>{
-const data = JSON.stringify({
-    size:"1GB",
-    network:"airtel",
-    phone:"08085943776",
-  });
-
-
-  axios.get('https://smedata.ng/wp-json/api/v1/data', {
-  params: {
+    await axios.get('https://smedata.ng/wp-json/api/v1/data', {
+    params: {
     size:"500MB",
     network:"mtn",
     phone:"07074297959",
@@ -25,18 +18,7 @@ const data = JSON.stringify({
   console.error(error);
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
+r.sendStatus(200)
 }
  const share =async(req,res)=>{
 res.sendStatus(200)

@@ -6,19 +6,17 @@ const gifting =async(q,r)=>{
     await axios.get('https://smedata.ng/wp-json/api/v1/data', {
     params: {
     size:"500MB",
-    network:"mtn",
+    network:"MTN",
     phone:"07074297959",
     token:"b1b2fce9371a0be8a1c65a6bc"
   }
 })
 .then(response => {
-  console.log(response.data);
+  r.send(response.data); 
 })
 .catch(error => {
   console.error(error);
 });
-
-r.sendStatus(200)
 }
  const share =async(req,res)=>{
 res.sendStatus(200)

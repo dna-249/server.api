@@ -29,7 +29,7 @@ const api =(q,r)=>{
  const product ={ MTN_DATA:[{size:"230mb1d", network:"MTN",plan:" MTN Direct Data 230MB Daily Plan"},
                {size:"1gb1d", network:"MTN",plan:" MTN Direct Data 1GB + 1.5Mins Daily plan"},
                {size:"1gb1w", network:"MTN",plan:" MTN Direct Data 1GB Weekly plan"},
-               {size:"1.5gb2d", network:"MTN",plan:" MTN Direct Data 1.5GB 2 &#8211; Days Plan"},
+               {size:"1.5gb2d", network:"MTN",plan:" MTN Direct Data 1.5GB 2 Days Plan"},
                {size:"1.5gb1w", network:"MTN",plan:" MTN Direct Data 1.5GB Weekly plan"},
                {size:"2.5gb1d", network:"MTN",plan:" MTN Direct Data 2.5GB Daily plan"},
                {size:"2.5gb2d", network:"MTN",plan:" MTN Direct Data 2.5GB 2 Days plan"},

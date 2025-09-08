@@ -91,6 +91,7 @@ const createUser =async(req,res)=>{
                     pin:pin,
                     user:user,
                     pass:password, 
+                    transaction:[{}]
                      }) 
         res.send("created successfully")
     } catch (error) {

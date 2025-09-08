@@ -6,6 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { mtnRouter,userRouter } = require("./router/router");
 const { gifting } = require("./controllers/mtn");
+const {transaction } = require("./controllers/mtn")
 
 const corsConfig = {
     origin : ["https://rumaisdata.vercel.app"],

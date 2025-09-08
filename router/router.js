@@ -5,6 +5,7 @@ const {share,gifting,getOneUser,createUser,getUsers, api} = require("../controll
 const { userLogin, userVerify } = require("../middlewave/login")
 
 mtnRouter.get("/api",api)
+mtnRouter.post("/buy",gifting)
 mtnRouter.get("/share",share)
 userRouter.post("/",createUser)
 userRouter.post("/login",userLogin)

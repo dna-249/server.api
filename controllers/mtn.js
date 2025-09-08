@@ -3,11 +3,13 @@ const {Products} = require("../models/user");
 const { default: axios } = require("axios");
 
 const gifting =async(q,r)=>{
+
+  const {size,network,phone} = q.body;
     await axios.get('https://smedata.ng/wp-json/api/v1/data', {
     params: {
-    size:"230mb1d",
-    network:"MTN",
-    phone:"07074297959",
+    size:size,
+    network:network,
+    phone:phone,
     token:"b1b2fce9371a0be8a1c65a6bc"
   }
 })

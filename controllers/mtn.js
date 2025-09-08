@@ -2,9 +2,10 @@ const https = require("https")
 const {Products} = require("../models/user");
 const { default: axios } = require("axios");
 
+
 const gifting =async(q,r)=>{
 
-  const {size,network,phone} = q.body;
+  const {size,network,phone,userId,date} = q.body;
     await axios.get('https://smedata.ng/wp-json/api/v1/data', {
     params: {
     size:size,
@@ -14,6 +15,7 @@ const gifting =async(q,r)=>{
   }
 })
 .then(response => {
+  transaction(userId,response.data.status,date)
   r.send(response.data); 
 })
 .catch(error => {
@@ -77,7 +79,7 @@ AIRTEL_DATA :[{size:"300mb2d", network:"Airtel",  plan:" Airtel Direct Data 300M
 }
 
 const createUser =async(req,res)=>{
-    const {name,email,phone,address,user,password,pin} =req.body;
+    const {name,email,phone,address,user,password,pin,userId,date} =req.body;
 
     try {
      await Products.create({
@@ -89,6 +91,12 @@ const createUser =async(req,res)=>{
                     pin:pin,
                     user:user,
                     pass:password, 
+                    transaction:[{
+                    size:size,
+                    network:network,
+                    amount:amount,
+                    date:date,
+                    status:'',}]
                      }) 
         res.send("created successfully")
     } catch (error) {
@@ -111,6 +119,23 @@ const getOneUser = async(req,res)=>{
     try {
         const users = await Products.findById({_id:id})
           res.json(users)
+    } catch (error) {
+          res.json(error.message)
+    }
+  
+}
+const transaction = async(userId,status,date)=>{
+    try {
+       await Products.findById({_id:userId},
+        {push:{
+                transaction:[{
+                size:size,
+                network:network,
+                amount:amount,
+                date:date,
+                status:status,
+            }]}
+     })
     } catch (error) {
           res.json(error.message)
     }

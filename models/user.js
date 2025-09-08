@@ -8,7 +8,14 @@ const Schema = mongoose.Schema({
     address:{ type:String},
     user:{ type:String},
     pass:{ type:String},  
-    pin:{ type:String},  
+    pin:{ type:String},
+    transaction:[{
+        size:{ type:String},
+        network:{ type:String},
+        amount:{ type:String},
+        data:{ type:String},
+        status:{ type:String},
+    }]  
 
 })
 

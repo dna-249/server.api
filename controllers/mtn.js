@@ -79,7 +79,7 @@ AIRTEL_DATA :[{size:"300mb2d", network:"Airtel",  plan:" Airtel Direct Data 300M
 }
 
 const createUser =async(req,res)=>{
-    const {name,email,phone,address,user,password,pin,userId,date} =req.body;
+    const {name,email,phone,address,user,password,pin} =req.body;
 
     try {
      await Products.create({
@@ -91,12 +91,6 @@ const createUser =async(req,res)=>{
                     pin:pin,
                     user:user,
                     pass:password, 
-                    transaction:[{
-                    size:size,
-                    network:network,
-                    amount:amount,
-                    date:date,
-                    status:'',}]
                      }) 
         res.send("created successfully")
     } catch (error) {

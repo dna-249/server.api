@@ -19,7 +19,7 @@ const options = {
   path: '/transaction/initialize',
   method: 'POST',
   headers: {
-    Authorization: `Bearer ${process.env.Live_KEY}`,
+    Authorization: `Bearer ${process.env.LIVE_KEY}`,
     'Content-Type': 'application/json'
   }
 }

@@ -5,10 +5,11 @@ const { default: axios } = require("axios");
 
 const payment =(q,r)=>{
   
-  const {email,amount} = q?.body
+  const {email,amount,name} = q?.body
   const params = JSON.stringify({
   "email": email,
   "amount": amount *100,
+  "name":name
   
 })
 

@@ -9,6 +9,7 @@ const Schema = mongoose.Schema({
     user:{ type:String},
     pass:{ type:String},  
     pin:{ type:String},
+    total:{ type:String},
     transaction:[{
         size:{ type:String},
         network:{ type:String},

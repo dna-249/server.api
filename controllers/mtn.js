@@ -79,7 +79,7 @@ AIRTEL_DATA :[{size:"300mb2d", network:"Airtel",  plan:" Airtel Direct Data 300M
 }
 
 const createUser =async(req,res)=>{
-    const {name,email,phone,address,user,password,pin,date,size,amount,network,status} =req.body;
+    const {name,email,phone,address,user,password,pin,date,size,amount,network,status,total} =req.body;
 
     try {
      await Products.create({
@@ -90,7 +90,8 @@ const createUser =async(req,res)=>{
                     address:address,
                     pin:pin,
                     user:user,
-                    pass:password, 
+                    pass:password,
+                    total:total, 
                     transaction:[{
                     size:size,
                     network:network,
@@ -118,15 +119,40 @@ const getOneUser = async(req,res)=>{
     const {id} = req.params
     try {
         const users = await Products.findById({_id:id})
-          res.json(users)
+       res.json(users)
     } catch (error) {
           res.json(error.message)
     }
   
 }
-const transaction = async(userId,status,date,amount)=>{
+
+const total = async(id,sums,add,minus)=>{
+    
+  
     try {
-       await Products.findById({_id:userId},
+                    const sum =()=>{
+
+                            if(add){ return Number(sums) + Number(add)}
+                            if(minus){ return Number(sums) - Number(minus)
+                            }else{ return sums }
+
+                            }
+
+                    const plus = sum()
+
+      await Products.findByIdAndUpdate({_id:id},{total:plus})
+                          
+
+    } catch (error) {
+          res.json(error.message)
+    }
+  
+
+}
+
+const transaction = async(id,status,date,amount)=>{
+    try {
+       await Products.findByIdAndUpdate({_id:id},
         {push:{
                 transaction:[{
                 size:size,
@@ -141,6 +167,20 @@ const transaction = async(userId,status,date,amount)=>{
     }
   
 }
+const resEvent =async(name,phone,email,date) =>{
+       try {
+          await Payer.create({
+          name:name,
+          phone:phone,
+          email:email,
+          date:date
+     })
+       console.log("created successfully")
+     } catch (error) {
+        console.log('error')  
+     }
+    
+}
 
 
-module.exports = {share,gifting,getOneUser,getUsers,createUser,api,transaction}
+module.exports = {share,gifting,getOneUser,getUsers,createUser,api,transaction,total}

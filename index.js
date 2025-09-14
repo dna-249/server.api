@@ -37,17 +37,15 @@ app.post("/", async(req,res)=>{
     const status = data?.status;
 
     if (status === "success") {
-       const user = await Products.findById({_id:customer.name})
-
-       total(customer.name,user?.total, data.amount,minus);
+      
+       total(customer.name,data.amount,minus);
        res.sendStatus(200); // Acknowledge receipt
     }
 
 
     if(userId){
-     const {total} = await Products.findById({_id:userId})
-     
-       total(userId,total, data.amount,minus);
+      
+       total(userId, data.amount,minus);
        res.sendStatus(200); // Acknowledge receipt
      
     }

@@ -167,8 +167,11 @@ const getOneUser = async(req,res)=>{
   
 }
 
-const total = async(id,sums,add,minus)=>{
-    
+const total = async(id,add,minus)=>{
+
+     const user = await Products.findById({_id:id})
+     const sums = user?.total
+
   
     try {
                     const sum =()=>{

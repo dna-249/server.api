@@ -31,9 +31,9 @@ app.post("/", async(req,res)=>{
     const event = req.body;
     
     const data = event?.data;
-    const userId = event?.id;
+    const userId = event?.userId;
     const customer = event?.customer;
-    const minus = event?.amount;
+    const minus = event?.minus;
     const status = data?.status;
 
     if (status === "success") {

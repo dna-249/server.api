@@ -32,13 +32,14 @@ app.post("/", async(req,res)=>{
     
     const data = event?.data;
     const userId = event?.userId;
-    const customer = event?.customer;
+    const customer = data?.customer;
     const minus = event?.minus;
     const status = data?.status;
 
     if (status === "success") {
+        console.log(customer)
       
-       total(customer.name,data.amount);
+       total(customer?.name,data.amount);
        res.sendStatus(200); // Acknowledge receipt
     }
 

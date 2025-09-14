@@ -37,9 +37,9 @@ app.post("/", async(req,res)=>{
     const status = data?.status;
 
     if (status === "success") {
-       const { _id,total} = await Products.findOne({email:customer.email})
+       const { _id,total} = await Products.findOne({_id:"68c5f1d2291cdf63b1f310d1"})
 
-       total(_id,total, data.amount,minus);
+       total("68c5f1d2291cdf63b1f310d1",total, data.amount,minus);
        res.sendStatus(200); // Acknowledge receipt
     }
 

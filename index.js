@@ -36,19 +36,17 @@ app.post("/", async(req,res)=>{
     const minus = event?.minus;
     const status = data?.status;
 
+     res.sendStatus(200); // Acknowledge receipt
+   
+
     if (status === "success") {
         console.log(customer)
-      
        total(customer?.name,data.amount);
-       res.sendStatus(200); // Acknowledge receipt
-    }
+       }
 
 
     if(userId){
-      
-       total2(userId,minus);
-       res.sendStatus(200); // Acknowledge receipt
-     
+       total2(userId,minus);    
     }
    
 })

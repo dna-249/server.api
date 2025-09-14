@@ -167,10 +167,11 @@ const getOneUser = async(req,res)=>{
   
 }
 
-const total = async(id,add)=>{
+const total = async(email,add)=>{
 
-     const user = await Products.findById({_id:id})
+     const user = await Products.findOne({email:email})
      const sums = user?.total
+     const id = user?._id
 
   
     try {
@@ -187,7 +188,7 @@ const total = async(id,add)=>{
                           
 
     } catch (error) {
-          res.json(error.message)
+          console.log(error.message)
     }
   
 

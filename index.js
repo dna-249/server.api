@@ -41,7 +41,7 @@ app.post("/", async(req,res)=>{
 
     if (status === "success") {
         console.log(customer)
-       total(customer?.name,data.amount);
+       total(customer?.email,data.amount);
        }
 
 

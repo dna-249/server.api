@@ -167,7 +167,7 @@ const getOneUser = async(req,res)=>{
   
 }
 
-const total = async(id,add,minus)=>{
+const total = async(id,add)=>{
 
      const user = await Products.findById({_id:id})
      const sums = user?.total
@@ -177,6 +177,29 @@ const total = async(id,add,minus)=>{
                     const sum =()=>{
 
                             if(add){ return Number(sums) + Number(add)}
+                           else{ return sums }
+
+                            }
+
+                    const plus = sum()
+
+      await Products.findByIdAndUpdate({_id:id},{total:plus})
+                          
+
+    } catch (error) {
+          res.json(error.message)
+    }
+  
+
+}
+const total2 = async(id,minus)=>{
+
+     const user = await Products.findById({_id:id})
+     const sums = user?.total
+
+  
+    try {
+                    const sum =()=>{
                             if(minus){ return Number(sums) - Number(minus)
                             }else{ return sums }
 
@@ -227,4 +250,4 @@ const resEvent =async(name,phone,email,date) =>{
 }
 
 
-module.exports = {share,gifting,getOneUser,getUsers,createUser,api,transaction,total,payment}
+module.exports = {share,gifting,getOneUser,getUsers,createUser,api,transaction,total,payment,total2}

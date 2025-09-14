@@ -5,7 +5,7 @@ const app = express()
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { mtnRouter,userRouter } = require("./router/router");
-const { gifting, total } = require("./controllers/mtn");
+const { gifting, total,total2 } = require("./controllers/mtn");
 const {transaction } = require("./controllers/mtn")
 
 const corsConfig = {
@@ -31,26 +31,25 @@ app.post("/", async(req,res)=>{
     const event = req.body;
     
     const data = event?.data;
-    const userId = event?.userId;
+    const userId = event?.id;
     const customer = event?.customer;
-    const minus = event?.minus;
+    const minus = event?.amount;
     const status = data?.status;
 
     if (status === "success") {
       
-       total(customer.name,data.amount,minus);
+       total(customer.name,data.amount);
        res.sendStatus(200); // Acknowledge receipt
     }
 
 
     if(userId){
       
-       total(userId, data.amount,minus);
+       total2(userId,minus);
        res.sendStatus(200); // Acknowledge receipt
      
     }
-    res.sendStatus(200); // Acknowledge receipt
-
+   
 })
 
 

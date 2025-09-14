@@ -173,11 +173,12 @@ const total = async(email,add)=>{
      const sums = user?.total
      const id = user?._id
 
-  
+     const divid =()=>{return add/100}
+     const adds = divid()
     try {
                     const sum =()=>{
 
-                            if(add){ return Number(sums) + Number(add)}
+                            if(add){ return Number(sums) + Number(adds)}
                            else{ return sums }
 
                             }

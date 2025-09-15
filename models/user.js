@@ -14,7 +14,7 @@ const Schema = mongoose.Schema({
         size:{ type:String},
         network:{ type:String},
         amount:{ type:String},
-        data:{ type:String},
+        date:{ type:String},
         status:{ type:String},
     }]  
 

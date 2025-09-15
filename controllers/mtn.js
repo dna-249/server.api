@@ -72,22 +72,22 @@ res.sendStatus(200)
 const api =(q,r)=>{
 
  const product ={ MTN_DATA:[{size:"230mb1d", network:"MTN",plan:" MTN Direct Data 230MB Daily Plan"},
-               {size:"1gb1d", network:"MTN",plan:" MTN Direct Data 1GB + 1.5Mins Daily plan"},
-               {size:"1gb1w", network:"MTN",plan:" MTN Direct Data 1GB Weekly plan"},
-               {size:"1.5gb2d", network:"MTN",plan:" MTN Direct Data 1.5GB 2 Days Plan"},
-               {size:"1.5gb1w", network:"MTN",plan:" MTN Direct Data 1.5GB Weekly plan"},
-               {size:"2.5gb1d", network:"MTN",plan:" MTN Direct Data 2.5GB Daily plan"},
-               {size:"2.5gb2d", network:"MTN",plan:" MTN Direct Data 2.5GB 2 Days plan"},
-               {size:"2gb1m", network:"MTN",plan:" MTN Direct Data 2GB + 2Mins for 30days"},
-               {size:"2.7gb1m", network:"MTN",plan:" MTN Direct Data 2.7GB + 5Mins for 30days"},
-               {size:"6gb1w", network:"MTN",plan:" MTN Direct Data 6GB weekly plan"},
-               {size:"3.5gb1m", network:"MTN",plan:" MTN Direct Data 3.5GB + 5Mins for 30 Days"},
-               {size:"7gb1m", network:"MTN",plan:" MTN Direct Data 7GB for 30 Days"},
-               {size:"10gb1m", network:"MTN",plan:" MTN Direct Data 10GB +10Mins for 30days"},
-               {size:"12.5gb1m", network:"MTN",plan:" MTN Direct Data 12.5GB for 30days"},
-               {size:"16.5gb1m", network:"MTN",plan:" MTN Direct Data 16.5GB + 10mins for 30days"},
-               {size:"20gb1m", network:"MTN",plan:" MTN Direct Data 20GB for 30 days"},
-               {size:"25gb1m", network:"MTN",plan:" MTN Direct Data 25GB Monthly plan"}],
+               {price: "" ,size:"1gb1d", network:"MTN",plan:" MTN Direct Data 1GB + 1.5Mins Daily plan"},
+               {price: "" ,size:"1gb1w", network:"MTN",plan:" MTN Direct Data 1GB Weekly plan"},
+               {price: "" ,size:"1.5gb2d", network:"MTN",plan:" MTN Direct Data 1.5GB 2 Days Plan"},
+               {price: "" ,size:"1.5gb1w", network:"MTN",plan:" MTN Direct Data 1.5GB Weekly plan"},
+               {price: "" ,size:"2.5gb1d", network:"MTN",plan:" MTN Direct Data 2.5GB Daily plan"},
+               {price: "" ,size:"2.5gb2d", network:"MTN",plan:" MTN Direct Data 2.5GB 2 Days plan"},
+               {price: "" ,size:"2gb1m", network:"MTN",plan:" MTN Direct Data 2GB + 2Mins for 30days"},
+               {price: "" ,size:"2.7gb1m", network:"MTN",plan:" MTN Direct Data 2.7GB + 5Mins for 30days"},
+               {price: "" ,size:"6gb1w", network:"MTN",plan:" MTN Direct Data 6GB weekly plan"},
+               {price: "" ,size:"3.5gb1m", network:"MTN",plan:" MTN Direct Data 3.5GB + 5Mins for 30 Days"},
+               {price: "" ,size:"7gb1m", network:"MTN",plan:" MTN Direct Data 7GB for 30 Days"},
+               {price: "" ,size:"10gb1m", network:"MTN",plan:" MTN Direct Data 10GB +10Mins for 30days"},
+               {price: "" ,size:"12.5gb1m", network:"MTN",plan:" MTN Direct Data 12.5GB for 30days"},
+               {price: "" ,size:"16.5gb1m", network:"MTN",plan:" MTN Direct Data 16.5GB + 10mins for 30days"},
+               {price: "" ,size:"20gb1m", network:"MTN",plan:" MTN Direct Data 20GB for 30 days"},
+               {price: "" ,size:"25gb1m", network:"MTN",plan:" MTN Direct Data 25GB Monthly plan"}],
 
 GLO_DATA:[{size:"500MB", network:"GLO", plan:" GLO Data 500MB (SME) 30 Days"},
                     {size:"1GB", network:"GLO", plan:" GLO Data 1GB (SME) 30 Days"},
@@ -165,6 +165,19 @@ const getOneUser = async(req,res)=>{
           res.json(error.message)
     }
   
+}
+const deleteOneUser =  async(req,res)=>{
+    try {
+        const {id}=req.params
+        const student = await Products.findByIdAndDelete({_id:id}, req.body)
+
+        if(!student){
+            res.status(404).json("student not found")
+        }else{
+        res.status(200).json(student)}
+    } catch (error) {
+       res.status(500).json({message:error.message}) 
+    }
 }
 
 const total = async(email,add)=>{
@@ -252,4 +265,4 @@ const resEvent =async(name,phone,email,date) =>{
 }
 
 
-module.exports = {share,gifting,getOneUser,getUsers,createUser,api,transaction,total,payment,total2}
+module.exports = {share,gifting,getOneUser,getUsers,createUser,api,transaction,total,payment,total2,deleteOneUser}

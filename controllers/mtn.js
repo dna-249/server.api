@@ -57,10 +57,10 @@ const gifting =async(q,r)=>{
 })
 .then(response => {
   if(response.data.status === "success"){
-    transaction("transaction",userId,response.data.status,date,amount,size,network)
+    transaction("transaction",userId,"success",date,amount,size,network)
     total2(userId,amount)
   }else{
-     transaction("transaction",userId,response.data.status,date,amount,size,network)
+     transaction("transaction",userId,"failed",date,amount,size,network)
   }
    r.send(response.data); 
 })

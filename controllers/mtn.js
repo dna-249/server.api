@@ -56,7 +56,8 @@ const gifting =async(q,r)=>{
   }
 })
 .then(response => {
-  transaction(userId,response.data.status,date,amount)
+  transaction(userId,response.data.status,date,amount,size,network)
+  total2(userId,amount)
   r.send(response.data); 
 })
 .catch(error => {
@@ -232,7 +233,7 @@ const total2 = async(id,minus)=>{
 
 }
 
-const transaction = async(id,status,date,amount)=>{
+const transaction = async(id,status,date,amount,size,network)=>{
     try {
        await Products.findByIdAndUpdate({_id:id},
         {push:{

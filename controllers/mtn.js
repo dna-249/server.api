@@ -237,11 +237,9 @@ const total2 = async(id,minus)=>{
 
 }
 
-const transaction = async(req,res)=>{
+const transaction = async(id,status,date,amount,size,network)=>{
    try { 
-    const {id} = req.params;
-    const {status,date,amount,size,network} = req.body;
-   
+  
        await Products.findByIdAndUpdate({_id:id},
         {push:{
                 transaction:[{
@@ -252,7 +250,7 @@ const transaction = async(req,res)=>{
                 status:status
             }]}
      })
-     res.sendStatus(200)
+   
     } catch (error) {
          console.log(error.message)
     }

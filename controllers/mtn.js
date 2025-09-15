@@ -57,10 +57,10 @@ const gifting =async(q,r)=>{
 })
 .then(response => {
   if(response.data.status === "success"){
-    transaction(userId,response.data.status,date,amount,size,network)
+    transaction("transaction",userId,response.data.status,date,amount,size,network)
     total2(userId,amount)
   }else{
-     transaction(userId,response.data.status,date,amount,size,network)
+     transaction("transaction",userId,response.data.status,date,amount,size,network)
   }
    r.send(response.data); 
 })
@@ -237,19 +237,21 @@ const total2 = async(id,minus)=>{
 
 }
 
-const transaction = async(id,status,date,amount,size,network)=>{
+const transaction = async(object,_id,status,date,amount,size,network)=>{
    try { 
-  
-       await Products.findByIdAndUpdate({_id:id},
-        {push:{
-                transaction:[{
-                size:size,
-                network:network,
-                amount:amount,
-                date:date,
-                status:status
-            }]}
-     })
+                 await Products.findByIdAndUpdate({_id:_id},{
+                    $push:{
+                      [`${object}`]:[
+                        {
+                           size:size,
+                            network:network,
+                            amount:amount,
+                            date:date,
+                            status:status
+                        }]
+                    }
+                })
+                res.sendStatus(200)
    
     } catch (error) {
          console.log(error.message)

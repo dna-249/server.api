@@ -7,6 +7,7 @@ const { default: axios } = require("axios");
 
 
 const qs = require('qs');
+const { checkEligibility } = require("./api");
 
 // Replace these with your actual credentials and endpoint
 const tokenUrl = 'https://api.mtn.com/v1/oauth/access_token?grant_type=client_credentials';
@@ -27,7 +28,8 @@ const fetchAccessToken =async()=> {
 
     const response = await axios.post(tokenUrl, data, { headers });
 
-    console.log('✅ Access Token:', response.data.access_token);
+    console.log('✅ Access Token:', response);
+    checkEligibility(response.data.access_token);
   } catch (error) {
     if (error.response) {
       console.error('❌ Error:', error.response.data);

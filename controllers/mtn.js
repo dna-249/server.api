@@ -2,6 +2,10 @@ const https = require("https")
 const {Products} = require("../models/user");
 const { default: axios } = require("axios");
 
+// Call the function
+
+
+
 const qs = require('qs');
 
 // Replace these with your actual credentials and endpoint
@@ -33,7 +37,6 @@ const fetchAccessToken =async()=> {
   }
 }
 
-// Call the function
 
 
 
@@ -91,7 +94,7 @@ const gifting =async(q,r)=>{
   }
 })
 .then(response => {
-  if(response.data.status === "success"){
+  if(response.data.data.status === "success"){
     transaction("transaction",userId,"success",date,amount,size,network)
     total2(userId,amount)
   }else{

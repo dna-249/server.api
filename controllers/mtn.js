@@ -2,6 +2,40 @@ const https = require("https")
 const {Products} = require("../models/user");
 const { default: axios } = require("axios");
 
+const qs = require('qs');
+
+// Replace these with your actual credentials and endpoint
+const tokenUrl = 'https://api.mtn.com/v1/oauth/access_token?grant_type=client_credentials';
+const clientId = process.env.SHARE_KEY;
+const clientSecret = process.env.SHARE_SECRET;
+
+const fetchAccessToken =async()=> {
+  try {
+    const data = qs.stringify({
+      grant_type: 'client_credentials',
+      client_id: clientId,
+      client_secret: clientSecret
+    });
+
+    const headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+
+    const response = await axios.post(tokenUrl, data, { headers });
+
+    console.log('✅ Access Token:', response.data.access_token);
+  } catch (error) {
+    if (error.response) {
+      console.error('❌ Error:', error.response.data);
+    } else {
+      console.error('⚠️ Unexpected Error:', error.message);
+    }
+  }
+}
+
+
+
+
 
 const payment =(q,r)=>{
   
@@ -10,7 +44,7 @@ const payment =(q,r)=>{
   "email": email,
   "amount": amount *100,
   "name":name
-  
+   
 })
 
 const options = {
@@ -274,4 +308,4 @@ const resEvent =async(name,phone,email,date) =>{
 }
 
 
-module.exports = {share,gifting,getOneUser,getUsers,createUser,api,transaction,total,payment,total2,deleteOneUser}
+module.exports = {fetchAccessToken,share,gifting,getOneUser,getUsers,createUser,api,transaction,total,payment,total2,deleteOneUser}

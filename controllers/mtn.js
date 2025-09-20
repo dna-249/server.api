@@ -10,8 +10,8 @@ const qs = require('qs');
 
 // Replace these with your actual credentials and endpoint
 const tokenUrl = 'https://api.mtn.com/v1/oauth/access_token?grant_type=client_credentials';
-const clientId = process.env.SHARE_KEY;
-const clientSecret = process.env.SHARE_SECRET;
+const clientId = '3EKiybDnteaJ2skHsXVGUUNMtGLlvgk2';
+const clientSecret ='akgfShZqdCgbMp3f';
 
 const fetchAccessToken =async()=> {
   try {
@@ -28,6 +28,7 @@ const fetchAccessToken =async()=> {
     const response = await axios.post(tokenUrl, data, { headers });
 
     console.log('✅ Access Token:', response.data.access_token);
+     checking( response.data.access_token);
   } catch (error) {
     if (error.response) {
       console.error('❌ Error:', error.response.data);
@@ -38,7 +39,29 @@ const fetchAccessToken =async()=> {
 }
 
 
+const checking =async(token)=> {
+  const url = 'https://api.mtn.com/v1/datashare/customers/07074297959';
 
+const headers = {
+  'Content-Type': 'application/json',
+  'X-API-Key': '3EKiybDnteaJ2skHsXVGUUNMtGLlvgk2' // 🔑 Replace with your actual MTN API key
+};
+
+const data = {
+  receiverMsisdn: '2345957585859',
+  requestedDataAmount: '100',
+  senderId: 'MyApp'
+};
+
+axios.post(url, data, { headers })
+  .then(response => {
+    console.log('✅ Success:', response.data);
+  })
+  .catch(error => {
+    console.error('❌ Error:', error.response?.data || error.message);
+  });
+
+}
 
 
 const payment =(q,r)=>{

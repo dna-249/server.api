@@ -20,9 +20,8 @@ const data = {
 };
 
 const headers = {
-   'Authorization':token,
   'Content-Type': 'application/json',
-  'X-API-Key': apiKey
+  'X-API-Key': 'Mj2WcIkJxIeuwAIiolk7kkrz8Neo'
 };
 
 axios.post(url, data, { headers })

@@ -321,9 +321,10 @@ const transaction = async(object,_id,status,date,amount,size,network)=>{
     }
   
 }
-const order = async(_id,date,amount,size,network,phone)=>{
+const order = async(req,res)=>{
+  const {userId,date,amount,size,network,phone} = req.body
    try { 
-                 await Products.findByIdAndUpdate({_id:_id},{
+                 await Products.findByIdAndUpdate({_id:userId},{
                     $push:{
                       ["order"]:[
                         {

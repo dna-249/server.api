@@ -16,7 +16,14 @@ const Schema = mongoose.Schema({
         amount:{ type:String},
         date:{ type:String},
         status:{ type:String},
-    }]  
+    }],
+    order:[{
+        size:{ type:String},
+        network:{ type:String},
+        amount:{ type:String},
+        date:{ type:String},
+        phone:{ type:String},
+    }] 
 
 })
 

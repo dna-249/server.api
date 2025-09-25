@@ -1,11 +1,12 @@
 const express = require("express")
 const mtnRouter = express.Router('')
 const userRouter = express.Router('')
-const {share,gifting,getOneUser,createUser,getUsers,transaction, api, payment, deleteOneUser, fetchAccessToken} = require("../controllers/mtn")
+const {share,gifting,getOneUser,createUser,getUsers,transaction, api, payment, deleteOneUser, fetchAccessToken, order} = require("../controllers/mtn")
 const { userLogin, userVerify } = require("../middlewave/login")
 
 mtnRouter.get("/api",api)
 mtnRouter.post("/buy",gifting)
+mtnRouter.post("/order",order)
 mtnRouter.get("/share",share)
 mtnRouter.post("/token",fetchAccessToken)
 mtnRouter.post("/payment",payment)

@@ -199,13 +199,14 @@ const createUser =async(req,res)=>{
                     pin:pin,
                     user:user,
                     pass:password,
-                    total:total, 
+                    total:total,
+
                     transaction:[{
                     size:size,
                     network:network,
                     amount:amount,
                     date:date,
-                    status:status}]
+                    status:status}],
                      }) 
         res.send("created successfully")
     } catch (error) {
@@ -320,20 +321,27 @@ const transaction = async(object,_id,status,date,amount,size,network)=>{
     }
   
 }
-const resEvent =async(name,phone,email,date) =>{
-       try {
-          await Payer.create({
-          name:name,
-          phone:phone,
-          email:email,
-          date:date
-     })
-       console.log("created successfully")
-     } catch (error) {
-        console.log('error')  
-     }
-    
+const order = async(_id,date,amount,size,network,phone)=>{
+   try { 
+                 await Products.findByIdAndUpdate({_id:_id},{
+                    $push:{
+                      ["order"]:[
+                        {
+                           size:size,
+                            network:network,
+                            amount:amount,
+                            date:date,
+                            phone:phone
+                        }]
+                    }
+                })
+                res.sendStatus(200)
+   
+    } catch (error) {
+         console.log(error.message)
+    }
+  
 }
 
 
-module.exports = {fetchAccessToken,share,gifting,getOneUser,getUsers,createUser,api,transaction,total,payment,total2,deleteOneUser}
+module.exports = {order,fetchAccessToken,share,gifting,getOneUser,getUsers,createUser,api,transaction,total,payment,total2,deleteOneUser}

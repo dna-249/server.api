@@ -5,7 +5,7 @@ const app = express()
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { mtnRouter,userRouter } = require("./router/router");
-const { gifting, total,total2 } = require("./controllers/mtn");
+const { gifting, total,total2, fetchAccessToken } = require("./controllers/mtn");
 const {transaction } = require("./controllers/mtn")
 
 const corsConfig = {

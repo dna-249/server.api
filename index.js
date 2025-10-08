@@ -51,9 +51,26 @@ app.post("/", async(req,res)=>{
    
 })
 
+app.get(`/add/:email/:add`, async(req,res)=>{
+    const {email,add} = req.params;
+    try {
+         total(email,add);
+         res.sendStatus("successfully")
+    } catch (error) {
+       res.sendStatus("failed") 
+    }
+     
+})
 
-
-
+app.get(`/minus/:email/:minus`, async(req,res)=>{
+    const {email,minus} = req.params;
+     try {
+         total(email,minus);
+         res.sendStatus("successfully")
+    } catch (error) {
+       res.sendStatus("failed") 
+    }
+})
 app.listen(Port, ()=>{
     console.log("server is Running")
     

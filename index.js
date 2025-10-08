@@ -65,7 +65,7 @@ app.post(`/add/:email/:add`, async(req,res)=>{
 app.post(`/minus/:email/:minus`, async(req,res)=>{
     const {email,minus} = req.params;
      try {
-         total(email,minus);
+         total2(email,minus);
          res.sendStatus("successfully")
     } catch (error) {
        res.sendStatus("failed") 

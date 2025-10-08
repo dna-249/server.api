@@ -55,9 +55,9 @@ app.post("/add/:email/:add", async(req,res)=>{
     const {email,add} = req.params;
     try {
          total(email,add);
-         res.sendStatus("successfully")
+         res.send("successfully")
     } catch (error) {
-       res.sendStatus("failed") 
+       res.send("failed") 
     }
      
 })
@@ -66,9 +66,9 @@ app.post("/minus/:email/:minus", async(req,res)=>{
     const {email,minus} = req.params;
      try {
          total2(email,minus);
-         res.sendStatus("successfully")
+         res.send("successfully")
     } catch (error) {
-       res.sendStatus("failed") 
+       res.send("failed") 
     }
 })
 app.listen(Port, ()=>{

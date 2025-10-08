@@ -215,8 +215,9 @@ const createUser =async(req,res)=>{
 }
 
 const getUsers =async(req,res)=>{
+
     try {
-          const users = await Products.find({})
+           const users = await Products.find({})
           res.json(users)
     } catch (error) {
           res.json(error.message)

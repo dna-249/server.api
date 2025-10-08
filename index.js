@@ -51,7 +51,7 @@ app.post("/", async(req,res)=>{
    
 })
 
-app.post(`/add/:email/:add`, async(req,res)=>{
+app.post("/add/:email/:add", async(req,res)=>{
     const {email,add} = req.params;
     try {
          total(email,add);
@@ -62,7 +62,7 @@ app.post(`/add/:email/:add`, async(req,res)=>{
      
 })
 
-app.post(`/minus/:email/:minus`, async(req,res)=>{
+app.post("/minus/:email/:minus", async(req,res)=>{
     const {email,minus} = req.params;
      try {
          total2(email,minus);

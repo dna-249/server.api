@@ -9,7 +9,7 @@ const { gifting, total,total2, fetchAccessToken } = require("./controllers/mtn")
 const {transaction } = require("./controllers/mtn")
 
 const corsConfig = {
-    origin : ["https://rumaisdata.vercel.app"],
+    origin : ["*"],
     credential : true,
     methods : ["GET","POST","PUT","DELETE"]
 }

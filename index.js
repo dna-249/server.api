@@ -9,7 +9,7 @@ const { gifting, total,total2 } = require("./controllers/mtn");
 const {Products} = require("./models/user")
 
 const corsConfig = {
-    origin : ["https://rumaisdata.vercel.app"],
+    origin : ["https://rumaisdata.vercel.app","https://annurdata.vercel.app"],
     credential : true,
     methods : ["GET","POST","PUT","DELETE"]
 }

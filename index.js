@@ -5,11 +5,11 @@ const app = express()
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { mtnRouter,userRouter } = require("./router/router");
-const { gifting, total,total2, fetchAccessToken } = require("./controllers/mtn");
-const {transaction } = require("./controllers/mtn")
+const { gifting, total,total2 } = require("./controllers/mtn");
+const {Products} = require("./models/user")
 
 const corsConfig = {
-    origin : ["https://rumaisdata.vercel.app"],
+    origin : ["https://rumaisdata.vercel.app","https://annurdata.vercel.app"],
     credential : true,
     methods : ["GET","POST","PUT","DELETE"]
 }
@@ -26,6 +26,20 @@ app.use("/mtn",mtnRouter)
 app.use("/user",userRouter)
 
 app.get("/",gifting)
+
+app.get("/total",async(req,res)=>{
+    try {
+        const users = await Products.find({})
+         const totalSum = users.reduce((sum, user) => {
+        return sum + Number(user.total || 0); 
+        }, 0);
+        res.send(`The total Amount:${totalSum}`)
+
+    } catch (error) {
+        res.send(error.message)
+    }
+       
+            })
 
 app.post("/", async(req,res)=>{
     const event = req.body;
@@ -55,9 +69,9 @@ app.post("/add/:email/:add", async(req,res)=>{
     const {email,add} = req.params;
     try {
          total(email,add);
-         res.sendStatus("successfully")
+         res.send("successfully")
     } catch (error) {
-       res.sendStatus("failed") 
+       res.send("failed") 
     }
      
 })
@@ -66,9 +80,9 @@ app.post("/minus/:email/:minus", async(req,res)=>{
     const {email,minus} = req.params;
      try {
          total2(email,minus);
-         res.sendStatus("successfully")
+         res.send("successfully")
     } catch (error) {
-       res.sendStatus("failed") 
+       res.send("failed") 
     }
 })
 app.listen(Port, ()=>{

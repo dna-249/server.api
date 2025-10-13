@@ -6,7 +6,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { mtnRouter,userRouter } = require("./router/router");
 const { gifting, total,total2 } = require("./controllers/mtn");
-const {Products} = require("./models/user")
+const {Products} = require("./models/user");
+const { default: axios } = require("axios");
 
 const corsConfig = {
     origin : ["https://rumaisdata.vercel.app","https://annurdata.vercel.app"],
@@ -85,7 +86,6 @@ app.post("/minus/:email/:minus", async(req,res)=>{
        res.send("failed") 
     }
 })
-app.listen(Port, ()=>{
-    console.log("server is Running")
-    
+app.listen(Port, async()=>{
+   console.log("server is Running")
 })

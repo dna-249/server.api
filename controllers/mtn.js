@@ -300,6 +300,39 @@ const total2 = async(id,minus)=>{
   
 
 }
+const deleteTransactions =async()=>{
+   const user = await Products.find({})
+        for(let i = 0; i< user.length;i++){
+            const items = user[i]
+            const id = user[i]
+                
+            for(let i = 0;i<items.transaction.length;i++){
+            const item =  items?.transaction[i].date
+            const _id2 =  items?.transaction[i]._id
+            console.log(item)
+           
+            const date2 = new Date(item)
+            const current = new Date()
+          
+            const current2 = date2.getTime()
+            const diff = (current-current2)/86400000
+            console.log(diff)
+
+
+            if(diff > 25){
+            await Products.findOneAndUpdate({_id:id},
+            {$pull:
+                {["transaction"]:{_id:_id2}}
+            })
+                }else{
+                    return;
+                }      
+        }}
+   
+}  
+setInterval(() => {
+  deleteTransactions()
+}, 24*60*60000);
 
 const transaction = async(object,_id,status,date,amount,size,network)=>{
    try { 
